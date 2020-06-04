@@ -23,16 +23,18 @@ public class CountryControllerPopulation {
         return new ResponseEntity<>(countries, HttpStatus.OK);
     }
 
-//    @GetMapping(value = "/size/min", produces = {"application/json"})
-//    public ResponseEntity<?> countrySmallestPop() {
-//        void countries = CountrysearchApplication.ourCountryList.countryList.sort(Comparator.comparingLong(Country::getPopulation));
-//        return ResponseEntity<>(countries.get(0), HttpStatus.OK);
-//    }
 
-    @GetMapping("/min")
+    @RequestMapping("/min")
     public ResponseEntity<?> getCountriesPopMin() {
         CountrysearchApplication.ourCountryList.countryList.sort(Comparator.comparingLong(Country::getPopulation));
         Country countries = CountrysearchApplication.ourCountryList.countryList.get(0);
+        return new ResponseEntity<>(countries, HttpStatus.OK);
+    }
+
+    @RequestMapping("/max")
+    public ResponseEntity<?> getCountriesPopMax() {
+        CountrysearchApplication.ourCountryList.countryList.sort(Comparator.comparingLong(Country::getPopulation));
+        Country countries = CountrysearchApplication.ourCountryList.countryList.get(CountrysearchApplication.ourCountryList.countryList.size() - 1);
         return new ResponseEntity<>(countries, HttpStatus.OK);
     }
 }
