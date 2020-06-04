@@ -22,6 +22,8 @@ public class CountryControllerNames {
 
     @GetMapping(value = "/start/{letter}", produces = {"application/json"})
     public ResponseEntity<?> getAlphabeticCountry(@PathVariable char letter) {
+        CountrysearchApplication.ourCountryList.countryList
+                .sort((c1, c2) -> c1.getCountryName().compareToIgnoreCase(c2.getCountryName()));
         List<Country> countries = CountrysearchApplication.ourCountryList
                 .findCountries(c -> c.getCountryName().toUpperCase().charAt(0) == Character.toUpperCase(letter));
 
