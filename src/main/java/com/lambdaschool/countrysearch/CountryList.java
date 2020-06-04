@@ -211,4 +211,18 @@ public class CountryList {
         countryList.add(new Country("Antigua and Barbuda",104084,440,32));
         countryList.add(new Country("Seychelles",95702,460,36));
     }
+
+    //Search Methods
+
+    public List<Country> findCountries(CheckCountry tester) {
+
+        List<Country> tempCountryList = new ArrayList<>();
+
+        for (Country c : countryList) {
+            if (tester.test(c)) {
+                tempCountryList.add(c);
+            }
+        }
+        return tempCountryList;
+    }
 }
